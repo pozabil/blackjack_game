@@ -1,13 +1,24 @@
 class Player
+  attr_reader :name, :bank, :hand
 
-  BASIC_MONEY = 100
-
-  attr_reader :name, :bank
-  attr_accessor :hand
-
-  def initialize(name)
+  def initialize(name = nil)
     @name = name
-    @bank = BASIC_MONEY
     @hand = []
   end
+
+  def refresh_bank(basic_money)
+    self.bank = basic_money
+  end
+
+  def make_bet(bet)
+    self.bank -= bet
+  end
+
+  def take_card(card)
+    hand << card
+  end
+
+  private
+
+  attr_writer :bank, :hand
 end

@@ -1,16 +1,20 @@
+require_relative 'player'
+require_relative 'deck'
+require_relative '../modules/preparation'
+require_relative '../modules/process'
+
 class Game
+  include Player
+  include Deck
+  include Preparation
+  include Process
+
   def start
     preparation
-    loop do
-      game
-    end
+    process
   end
 
-  def preparation
-    create_player
-    create_dealer
-  end
+  private
 
-  def game
-  end
+  attr_accessor :player, :dealer, :deck, :game_bank
 end
