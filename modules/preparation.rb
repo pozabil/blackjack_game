@@ -12,7 +12,7 @@ module Preparation
       self.player = Player.new(player_name)
       break unless player.name.empty?
 
-      puts 'Неверное имя игрока.'
+      puts 'Неверное имя игрока...'
     end
   end
 

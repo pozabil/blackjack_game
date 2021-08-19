@@ -1,7 +1,7 @@
 class Deck
   SUITS = ["\u2660", "\u2663", "\u2665", "\u2666"].freeze
   RANKS = (2..10).to_a.map!(&:to_s) + %w[J Q K A]
-  COMPOSTION = []; RANKS.each { |rank| SUITS.each { |suit| COMPOSTION << rank + suit } }
+  COMPOSITION = []; RANKS.each { |rank| SUITS.each { |suit| COMPOSITION << [rank, suit] } }
 
   attr_reader :cards
 
@@ -10,7 +10,7 @@ class Deck
   end
 
   def shuffle!
-    self.cards = COMPOSTION
+    self.cards = COMPOSITION.dup
     rand(2..6).times { cards.shuffle! }
   end
 

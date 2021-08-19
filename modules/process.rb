@@ -1,4 +1,4 @@
-require_relative './process/play_round'
+require_relative 'play_round'
 
 module Process
   include PlayRound
@@ -25,15 +25,22 @@ module Process
 
   def play
     loop do
+      refresh_hands
+      deck.shuffle!
       making_bets
       play_round
       break if break_check
     end
   end
 
+  def refresh_hands
+    player.refresh_hand
+    dealer.refresh_hand
+  end
+
   def play_again?
     loop do
-      puts 'Хотите начать игру заново? (Да/Нет)'
+      puts 'Хотите начать игру заново? (Да/Нет):'
       choice = gets.chomp.downcase
       case choice
       when 'да'
@@ -41,13 +48,13 @@ module Process
       when 'нет'
         return false
       else
-        'Ответ не распознан.'
+        puts 'Ответ не распознан...'
       end
     end
   end
 
   def making_bets
-    puts 'Делаем ставки'
+    puts 'Делаем ставки...'
     player.make_bet(BET_VALUE)
     dealer.make_bet(BET_VALUE)
     self.game_bank = BET_VALUE * 2
@@ -66,16 +73,16 @@ module Process
   end
 
   def player_lose_alert
-    puts "Игрок #{player.name} проиграл."
+    puts "Игрок #{player.name} проигрывает игру."
   end
 
   def player_win_alert
-    puts "Игрок #{player.name} выиграл."
+    puts "Игрок #{player.name} выигрывает игру."
   end
 
   def one_more?
     loop do
-      puts 'Хотите сыграть еще один раунд? (Да/Нет)'
+      puts 'Хотите сыграть еще один раунд? (Да/Нет):'
       choice = gets.chomp.downcase
       case choice
       when 'да'
@@ -83,7 +90,7 @@ module Process
       when 'нет'
         return false
       else
-        'Ответ не распознан.'
+        puts 'Ответ не распознан.'
       end
     end
   end

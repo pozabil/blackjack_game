@@ -4,12 +4,12 @@ require_relative '../modules/preparation'
 require_relative '../modules/process'
 
 class Game
-  include Player
-  include Deck
   include Preparation
   include Process
 
   def start
+    system 'clear'
+    puts
     preparation
     process
   end
