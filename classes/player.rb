@@ -59,5 +59,5 @@ class Player
     end
   end
 
-  attr_writer :bank, :hand, :hand_value
+  attr_writer :bank, :hand
 end
