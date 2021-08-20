@@ -1,20 +1,25 @@
+require_relative 'interface'
 require_relative 'player'
+require_relative 'hand'
+require_relative 'card'
 require_relative 'deck'
-require_relative '../modules/preparation'
-require_relative '../modules/process'
+require_relative '../modules/game/preparation'
+require_relative '../modules/game/process'
 
 class Game
   include Preparation
   include Process
 
+  def initialize
+    self.interface = Interface.new
+  end
+
   def start
-    system 'clear'
-    puts
     preparation
     process
   end
 
   private
 
-  attr_accessor :player, :dealer, :deck, :game_bank
+  attr_accessor :interface, :player, :dealer, :deck, :game_bank
 end

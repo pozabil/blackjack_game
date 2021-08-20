@@ -9,10 +9,10 @@ module Preparation
 
   def create_player
     loop do
-      self.player = Player.new(player_name)
+      self.player = Player.new(interface.request_player_name)
       break unless player.name.empty?
 
-      puts 'Неверное имя игрока...'
+      interface.wrong_name_alert
     end
   end
 
@@ -22,10 +22,5 @@ module Preparation
 
   def create_deck
     self.deck = Deck.new
-  end
-
-  def player_name
-    print 'Введите имя игрока: '
-    gets.chomp.capitalize
   end
 end
