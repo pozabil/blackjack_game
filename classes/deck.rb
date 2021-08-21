@@ -10,7 +10,7 @@ class Deck
 
   def shuffle!
     generate
-    rand(2..6).times { cards.shuffle! }
+    cards.shuffle!
   end
 
   def generate
